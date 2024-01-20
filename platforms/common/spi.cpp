@@ -71,7 +71,9 @@ const px4_spi_bus_t *px4_spi_buses{nullptr};
 
 int px4_find_spi_bus(uint32_t devid)
 {
-	for (int i = 0; ((px4_spi_bus_t *) px4_spi_buses) != nullptr && i < SPI_BUS_MAX_BUS_ITEMS; ++i) {
+    // ((px4_spi_bus_t *) px4_spi_buses) != nullptr
+    // HJL 01/20/2024 - on cube orange `px4_spi_buses` apparently will never be NULL
+	for (int i = 0; i < SPI_BUS_MAX_BUS_ITEMS; ++i) {
 		const px4_spi_bus_t &bus_data = px4_spi_buses[i];
 
 		if (bus_data.bus == -1) {

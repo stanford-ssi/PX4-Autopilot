@@ -33,6 +33,7 @@
 
 #include "SagetechMXS.hpp"
 
+
 /***************************************
  * Workqueue Functions
  * *************************************/
@@ -52,7 +53,10 @@ SagetechMXS::SagetechMXS(const char *port) :
 
 SagetechMXS::~SagetechMXS()
 {
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wfree-nonheap-object"
 	free((char *)_port);
+    #pragma GCC diagnostic pop
 
 	if (!(_fd < 0)) {
 		close(_fd);
